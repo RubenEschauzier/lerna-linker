@@ -59,7 +59,6 @@ function linkPackagesTarget() {
     return __awaiter(this, void 0, void 0, function* () {
         const packages = fs_1.default.readFileSync(path_1.default.join(__dirname, "..", "logs/packages.txt"), 'utf-8').trim().split('\n');
         for (const comunicaPackage of packages) {
-            console.log(comunicaPackage);
             try {
                 yield execPromise(`yarn link ${comunicaPackage}`);
             }

@@ -49,7 +49,6 @@ export async function linkPackagesSource(){
 export async function linkPackagesTarget(){
     const packages = fs.readFileSync(path.join(__dirname, "..", "logs/packages.txt"), 'utf-8').trim().split('\n');
     for (const comunicaPackage of packages){
-        console.log(comunicaPackage);
         try{
             await execPromise(`yarn link ${comunicaPackage}`);
         }
