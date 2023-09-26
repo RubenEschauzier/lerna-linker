@@ -24,7 +24,6 @@ export async function linkPackagesSource(){
         outputLink = await execPromise("yarn run lerna exec --no-bail yarn link");
     }
     catch(err){
-        console.error(err);
     }
 
     fs.appendFileSync(`${path.join(__dirname, "../logs/stdoutLinkSource.txt")}`, outputLink.stdout);
@@ -35,7 +34,6 @@ export async function linkPackagesSource(){
         outputAllPackages = await execPromise("yarn run lerna ls | grep '^@'");
     }
     catch(err){
-        console.error(err);
     }
 
     fs.writeFileSync(`${path.join(__dirname, "../logs/packages.txt")}`, outputAllPackages.stdout);

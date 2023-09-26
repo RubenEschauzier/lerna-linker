@@ -36,7 +36,6 @@ function linkPackagesSource() {
             outputLink = yield execPromise("yarn run lerna exec --no-bail yarn link");
         }
         catch (err) {
-            console.error(err);
         }
         fs_1.default.appendFileSync(`${path_1.default.join(__dirname, "../logs/stdoutLinkSource.txt")}`, outputLink.stdout);
         fs_1.default.appendFileSync(`${path_1.default.join(__dirname, "../logs/stderrLinkSource.txt")}`, outputLink.stderr);
@@ -45,7 +44,6 @@ function linkPackagesSource() {
             outputAllPackages = yield execPromise("yarn run lerna ls | grep '^@'");
         }
         catch (err) {
-            console.error(err);
         }
         fs_1.default.writeFileSync(`${path_1.default.join(__dirname, "../logs/packages.txt")}`, outputAllPackages.stdout);
         fs_1.default.appendFileSync(`${path_1.default.join(__dirname, "../logs/stderrLinkSource.txt")}`, outputAllPackages.stderr);
