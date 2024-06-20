@@ -1,6 +1,6 @@
 {
   "name": "lerna-linker",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Simple script for linking development",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,8 @@
     "Lerna"
   ],
   "repository": {
-  "type": "git",
-  "url": "https://github.com/RubenEschauzier/lerna-linker"
+    "type": "git",
+    "url": "https://github.com/RubenEschauzier/lerna-linker"
   },
   "author": "Ruben Eschauzier",
   "license": "MIT",
