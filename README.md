@@ -15,7 +15,7 @@ In case you want to un-link your development version of Comunica from your proje
 `lerna-linker unlinkTarget ` -->
 
 
-The lerna-linker tool provides an easy way to link a local development version of [Comunica](https://github.com/comunica/comunica) to another local project (such as [comunica-feature-link-traversal](https://github.com/comunica/comunica-feature-link-traversal)) without the need to publish either development version to NPM. This is particularly useful for testing and development purposes.
+The lerna-linker tool provides an easy way to link a local development version of [Comunica](https://github.com/comunica/comunica) to another local project (such as [comunica-feature-link-traversal](https://github.com/comunica/comunica-feature-link-traversal)) without the need to publish these development versions of projects to NPM. This is particularly useful for local testing and development purposes.
 ### Usage
 
 1. Link the Source
@@ -42,4 +42,3 @@ The lerna-linker tool provides an easy way to link a local development version o
     lerna-linker unlinkTarget
     ```
 
-This tool simplifies the process of linking and unlinking local development versions of Comunica and its dependent projects, enhancing your development workflow.
