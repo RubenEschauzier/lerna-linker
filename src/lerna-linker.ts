@@ -31,7 +31,11 @@ export async function linkPackagesSource(){
 
     let outputAllPackages = {stdout: "", stderr: ""};
     try{
-        outputAllPackages = await execPromise("yarn run lerna ls | grep '^@'");
+        outputAllPackages = await execPromise("yarn run lerna ls");
+        // Remove first two and last lines as they contain irrelevant output
+        const output = outputAllPackages.stdout.split("\n");
+        const packages = output.slice(2, output.length - 2);
+        outputAllPackages.stdout = packages.join('\n')
     }
     catch(err){
     }

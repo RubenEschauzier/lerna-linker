@@ -12,7 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.unlinkPackagesTarget = exports.linkPackagesTarget = exports.linkPackagesSource = void 0;
+exports.linkPackagesSource = linkPackagesSource;
+exports.linkPackagesTarget = linkPackagesTarget;
+exports.unlinkPackagesTarget = unlinkPackagesTarget;
 const child_process_1 = require("child_process");
 const util_1 = __importDefault(require("util"));
 const path_1 = __importDefault(require("path"));
@@ -41,7 +43,11 @@ function linkPackagesSource() {
         fs_1.default.appendFileSync(`${path_1.default.join(__dirname, "../logs/stderrLinkSource.txt")}`, outputLink.stderr);
         let outputAllPackages = { stdout: "", stderr: "" };
         try {
-            outputAllPackages = yield execPromise("yarn run lerna ls | grep '^@'");
+            outputAllPackages = yield execPromise("yarn run lerna ls");
+            // Remove first two and last lines as they contain irrelevant output
+            const output = outputAllPackages.stdout.split("\n");
+            const packages = output.slice(2, output.length - 2);
+            outputAllPackages.stdout = packages.join('\n');
         }
         catch (err) {
         }
@@ -52,7 +58,6 @@ function linkPackagesSource() {
         console.log(`Run <lerna-linker linkTarget> in the repository you want to use the linked packages in.`);
     });
 }
-exports.linkPackagesSource = linkPackagesSource;
 function linkPackagesTarget() {
     return __awaiter(this, void 0, void 0, function* () {
         const packages = fs_1.default.readFileSync(path_1.default.join(__dirname, "..", "logs/packages.txt"), 'utf-8').trim().split('\n');
@@ -67,7 +72,6 @@ function linkPackagesTarget() {
         console.log(`Linked ${packages.length} packages`);
     });
 }
-exports.linkPackagesTarget = linkPackagesTarget;
 function unlinkPackagesTarget() {
     return __awaiter(this, void 0, void 0, function* () {
         const packages = fs_1.default.readFileSync(path_1.default.join(__dirname, "..", "logs/packages.txt"), 'utf-8').split('\n');
@@ -82,4 +86,3 @@ function unlinkPackagesTarget() {
         console.log(`Unlinked ${packages.length} packages`);
     });
 }
-exports.unlinkPackagesTarget = unlinkPackagesTarget;
